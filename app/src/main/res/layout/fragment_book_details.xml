@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darker_gray_bg"
+    tools:context=".details.presentation.BookDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:background="@null"
+        android:padding="8dp"
+        android:src="@drawable/ic_vuesax_outline_arrow_left"
+        android:tint="@color/lighter_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnSave"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:background="@null"
+        android:padding="16dp"
+        android:src="@drawable/ic_vuesax_outline_archive_add"
+        android:tint="@color/lighter_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBookTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/btnSave"
+        app:layout_constraintEnd_toStartOf="@id/btnSave"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        tools:text="Book Title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewThumbnail"
+                android:layout_width="220dp"
+                android:layout_height="276dp"
+                android:elevation="0dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivBookCover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cardViewThumbnail"
+                app:layout_constraintTop_toTopOf="@id/cardViewThumbnail">
+
+                <!-- Year -->
+                <TextView
+                    android:id="@+id/tvYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="2022" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year"
+                    android:textColor="@color/lighter_gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <!-- Pages -->
+                <TextView
+                    android:id="@+id/tvTotalPages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="384" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Pages"
+                    android:textColor="@color/lighter_gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <!-- Rating -->
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="5.0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:textColor="@color/lighter_gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvBookTitleMain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardViewThumbnail"
+                tools:text="Java Essentials for Beginners" />
+
+            <TextView
+                android:id="@+id/tvBookAuthor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/lighter_gray"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBookTitleMain"
+                tools:text="By: George Gigauri" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_bg_100"
+                android:backgroundTint="@color/red"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvBookTitleMain"
+                tools:text="$39.99" />
+
+            <TextView
+                android:id="@+id/labelDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Description"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvBookAuthor" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/lighter_gray"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/labelDescription"
+                tools:text="Lorem ipsum" />
+
+            <TextView
+                android:id="@+id/labelPdfUrls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Urls"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPdfUrls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/labelPdfUrls"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_pdf_url" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
