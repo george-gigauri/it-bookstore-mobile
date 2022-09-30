@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ge.herpi.itbookstore.R
 import ge.herpi.itbookstore.common.base.BaseFragment
+import ge.herpi.itbookstore.common.extension.toast
 import ge.herpi.itbookstore.databinding.FragmentHomeBinding
 import ge.herpi.itbookstore.main.domain.model.Book
 
@@ -37,9 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onStart()
 
         viewModel.errorMessage.observe(this) {
-            it?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
+            toast(it)
         }
 
         viewModel.books.observe(this) {

@@ -1,5 +1,7 @@
 package ge.herpi.itbookstore.details.domain.model
 
+import ge.herpi.itbookstore.details.data.local.entity.BookEntity
+
 data class BookDetails(
     val authors: String,
     val desc: String,
@@ -17,4 +19,12 @@ data class BookDetails(
     val title: String,
     val url: String,
     val year: String
-)
+) {
+    fun toBookEntity(): BookEntity =
+        BookEntity(
+            isbn13,
+            authors,
+            desc,
+            image, isbn10, language, pages, price, publisher, rating, subtitle, title, url, year
+        )
+}

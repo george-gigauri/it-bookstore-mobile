@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
+import ge.herpi.itbookstore.R
 import ge.herpi.itbookstore.common.base.BaseFragment
+import ge.herpi.itbookstore.common.extension.color
+import ge.herpi.itbookstore.common.extension.toast
 import ge.herpi.itbookstore.databinding.FragmentBookDetailsBinding
 import ge.herpi.itbookstore.details.domain.model.Pdf
 
@@ -24,8 +26,7 @@ class BookDetailsFragment : BaseFragment<FragmentBookDetailsBinding>() {
     private val pdfAdapter: PdfUrlAdapter = PdfUrlAdapter(this::onPdfClicked)
 
     override fun getBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
+        inflater: LayoutInflater, container: ViewGroup?
     ): FragmentBookDetailsBinding = FragmentBookDetailsBinding.inflate(inflater)
 
     override fun setup(view: View, savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ class BookDetailsFragment : BaseFragment<FragmentBookDetailsBinding>() {
 
     private fun setOnClickListeners() {
         binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+        binding.btnSave.setOnClickListener { onSaveClicked() }
     }
 
     override fun onStart() {
@@ -54,13 +56,24 @@ class BookDetailsFragment : BaseFragment<FragmentBookDetailsBinding>() {
             pdfAdapter.submitList(it.pdf)
         }
 
-        viewModel.isLoading.observe(this) {
+        viewModel.isSaved.observe(this) {
+            binding.btnSave.setImageResource(
+                if (it) R.drawable.ic_vuesax_bold_archive_tick
+                else R.drawable.ic_vuesax_outline_archive_add
+            )
 
+            binding.btnSave.setColorFilter(
+                if (it) color(R.color.red) else color(R.color.lighter_gray)
+            )
+        }
+
+        viewModel.isLoading.observe(this) {
+            binding.btnSave.isEnabled = !it
         }
 
         viewModel.errorMessage.observe(this) {
             if (!it.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                toast(it)
             }
         }
     }
@@ -71,5 +84,11 @@ class BookDetailsFragment : BaseFragment<FragmentBookDetailsBinding>() {
         }.also {
             startActivity(it)
         }
+    }
+
+    private fun onSaveClicked() {
+        val isSaved = viewModel.isSaved.value
+        val book = viewModel.data.value
+        if (isSaved == true) book?.let { viewModel.remove(it) } else book?.let { viewModel.save(it) }
     }
 }
