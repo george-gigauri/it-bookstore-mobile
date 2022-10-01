@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darker_gray_bg"
+    tools:context=".search.presentation.SearchFragment">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_vuesax_outline_arrow_left"
+        android:tint="@color/lighter_gray"
+        app:layout_constraintBottom_toBottomOf="@id/etSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        app:tint="@color/lighter_gray" />
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_bg_100"
+        android:backgroundTint="@color/light_gray"
+        android:gravity="center|start"
+        android:hint="Search..."
+        android:includeFontPadding="false"
+        android:paddingHorizontal="16dp"
+        android:singleLine="true"
+        android:textColor="@color/exo_white"
+        android:textColorHint="@color/lighter_gray"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSearchEnd"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:padding="2dp"
+        android:src="@drawable/ic_vuesax_outline_search_normal"
+        android:tint="@color/lighter_gray"
+        android:transitionName="search"
+        app:layout_constraintBottom_toBottomOf="@id/etSearch"
+        app:layout_constraintEnd_toEndOf="@id/etSearch"
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        app:tint="@color/lighter_gray" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearchResults"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:spanCount="2"
+        tools:listitem="@layout/item_book" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,9 +19,11 @@ import ge.herpi.itbookstore.main.domain.repository.BookRepository
 import ge.herpi.itbookstore.saves.data.local.dao.SavedBooksDao
 import ge.herpi.itbookstore.saves.data.repository.SavedBooksRepositoryImpl
 import ge.herpi.itbookstore.saves.domain.repository.SavedBooksRepository
+import ge.herpi.itbookstore.search.data.remote.api.SearchApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -74,6 +76,10 @@ object AppModule {
     @Singleton
     fun provideBookDetailsApi(retrofit: Retrofit): BookDetailsApi =
         retrofit.create(BookDetailsApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSearchApi(retrofit: Retrofit): SearchApi = retrofit.create()
 
     @Provides
     @Singleton

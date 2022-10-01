@@ -31,9 +31,9 @@
         <action
             android:id="@+id/action_bookDetailsFragment_to_homeFragment"
             app:destination="@id/navHome"
+            app:launchSingleTop="true"
             app:popUpTo="@id/navHome"
-            app:popUpToInclusive="true"
-            app:launchSingleTop="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -43,6 +43,15 @@
         tools:layout="@layout/fragment_saved_books">
         <action
             android:id="@+id/action_savedBooksFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navSearch"
+        android:name="ge.herpi.itbookstore.search.presentation.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_bookDetailsFragment"
             app:destination="@id/bookDetailsFragment" />
     </fragment>
 </navigation>
